@@ -95,7 +95,7 @@ function setup() {
 }
 
 function draw() {
-  background("skyblue");
+  background("#7ac35a");
 
   let dx = targetX - player.x;
   let dy = targetY - player.y;
