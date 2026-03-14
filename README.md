@@ -113,17 +113,17 @@ The original structural framework for the p5play sprite animation system and pro
 
 During development, GenAI was used as a debugging assistant and implementation support tool. It assisted with:
 
-Refactoring fox movement logic to normalize velocity and produce consistent wandering speed
+- Refactoring fox movement logic to normalize velocity and produce consistent wandering speed
 
-Implementing mouse-driven navigation and click-to-move behavior
+- Implementing mouse-driven navigation and click-to-move behavior
 
-Designing and integrating a pixel-based bone sprite using a matrix sprite renderer
+- Designing and integrating a pixel-based bone sprite using a matrix sprite renderer
 
-Debugging animation state transitions for sleep, bark, wander, and movement states
+- Debugging animation state transitions for sleep, bark, wander, and movement states
 
-Integrating sound effects (footsteps, bark, snore) and resolving playback conflicts
+- Integrating sound effects (footsteps, bark, snore) and resolving playback conflicts
 
-Improving interaction logic for bone placement and fox collision detection
+- Improving interaction logic for bone placement and fox collision detection
 
 GenAI also assisted in restructuring code for clarity, including modularizing bone rendering, toolbox UI logic, and sprite drawing functions.
 
