@@ -109,20 +109,24 @@ In-Text Reference List (ACM Style)
 
 ## GenAI
 
-The original structural framework (JSON loading, camera interpolation system) was provided by Dr. Karen Cochrane and David Han.
+The original structural framework for the p5play sprite animation system and project template was provided by Dr. Karen Cochrane and David Han as part of the course materials.
 
-During development, GenAI was used as a debugging assistant and architectural support tool. It assisted with:
+During development, GenAI was used as a debugging assistant and implementation support tool. It assisted with:
 
-- Refactoring collision logic
+Refactoring fox movement logic to normalize velocity and produce consistent wandering speed
 
-- Implementing zoom-safe camera transformations
+Implementing mouse-driven navigation and click-to-move behavior
 
-- Correcting desaturation blending behavior
+Designing and integrating a pixel-based bone sprite using a matrix sprite renderer
 
-- Optimizing spatial boundary detection
+Debugging animation state transitions for sleep, bark, wander, and movement states
 
-- Improving modular structure clarity
+Integrating sound effects (footsteps, bark, snore) and resolving playback conflicts
 
-All conceptual direction, system design, aesthetic decisions, color selection, spatial layout, and interaction mechanics were designed, implemented, and iteratively refined by Sofia Xu.
+Improving interaction logic for bone placement and fox collision detection
+
+GenAI also assisted in restructuring code for clarity, including modularizing bone rendering, toolbox UI logic, and sprite drawing functions.
+
+All gameplay concepts, interaction mechanics, system design decisions, visual style choices, and iterative refinements were conceived, designed, and implemented by Sofia Xu.
 
 ---
