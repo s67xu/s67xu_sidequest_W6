@@ -12,110 +12,99 @@ Game design, world restructuring, mechanics design, fox interaction design, UI/U
 ---
 
 ## Description
+This project is an interactive pixel-art desktop pet experience where players raise and interact with a small fox living on a grassy canvas. The design focuses on creating a playful, low-pressure interaction that encourages experimentation through simple mouse and keyboard inputs.
 
+The fox acts as an autonomous companion that wanders around the screen when idle. Players can interact with the fox by clicking different locations on the canvas, placing bones as toys, or triggering reactions through keyboard input. The fox responds with animations and sound effects, creating a reactive and multi-sensory interaction experience.
 
 ---
 
-## Learning Goals
+## Key mechanics
 
-Learning Goals:
+- Autonomous wandering: fox moves around the canvas when idle
+- Click-to-move interaction allowing the player to guide the fox to any location
+- Play Interaction: where clicking the fox causes it to purr and interact with you
+- Bark action triggered by pressing the space bar or when eatting a bone
+- Bone placement mechanic where players can drop bones for the fox to collect
+- Reactive sound effects including footsteps, barking, and purring
+- Pixel-art visuals and UI elements such as a bone toolbox
 
-- E
 
 ---
 
 ## Setup and Interaction Instructions
 ### How to Play
 
-#### Movement: <br>
-Use WASD or Arrow Keys to move the glowing presence freely through the world.
+#### Mouse Controls: <br>
+- Click anywhere on the canvas → The fox runs to that location.
+- Click on the fox → The fox lies down and falls asleep.
+- Click the bone icon in the top-left corner → Toggle bone placement mode.
+- In bone mode, click anywhere on the canvas → Drop a bone for the fox.
 
-#### Objective: <br>
-Explore memory rooms by entering and exiting through doors.
+#### Keyboard Controls: <br>
+- Press Spacebar → The fox stops and barks.
 
-#### Room Logic: <br>
-Rooms can only be entered or exited through door openings. <br>
-Walls act as solid boundaries.
+#### Gameplay Interaction Loop: <br>
 
-#### Zoom Controls: <br>
-AUse the "+" and "–" buttons at the bottom-right corner to adjust zoom level. <br>
-Zooming allows players to shift between overview and detailed inspection.
+Players can:
 
-#### Core Memory: <br>
-The central bedroom serves as the spatial and emotional anchor of the world, with all other rooms radiating outward from it.
+- Guide the fox around the screen
+- Play with the box by clicking on it
+- Drop bones for the fox to collect
+- Trigger bark animations and sound effects
 
-#### Reset: <br>
-Press R to reset player position.
+When the fox reaches a bone, it automatically barks and eats it, causing the bone to disappear.
 
 ---
 ## Iteration Notes
 ### a. Post-Playtest (Self-Playtesting)
+Three changes were made after testing the early version of the project:
+#### 1. Improved Movement Consistency <br>
+The fox’s wandering behavior originally used variable velocity that caused inconsistent speeds. This was changed to normalized movement vectors to create smoother and more predictable motion.
 
-#### 1. Player Representation Refinement <br>
-Initial versions represented the player as a solid circle. This felt too literal and game-like. The design was revised to use a softly pulsing blue glow to represent presence rather than physical identity. This abstraction better aligned with the memory-based concept.
+#### 2. Updated Bone Visual Design <br>
+The initial bone design was too large and lacked visual clarity. The bone was redesigned using a pixel sprite with shading and outline to better match the scale of the fox and improve contrast with the background.
 
-#### 2. Color Calibration and Transparency Adjustments <br>
-Early room colors appeared greyed out due to transparency and blending with the dark background. Alpha values were removed and direct RGB values from the selected palette were applied. Desaturation is now controlled through interpolation rather than transparency layering, preserving vibrancy.
-
-#### 3. Door-Based Collision Correction <br>
-Initial collision logic only restricted exit but not entry, allowing unintended wall clipping. A previous-position tracking system was implemented to detect boundary crossing events, ensuring rooms can only be entered or exited through doors.
-
-#### 4. Zoom Integration and Camera Refactor <br>
-Adding zoom initially broke collision perception. Camera transformation order was restructured:
-
-- Translate to screen center
-
-- Apply scale
-
-- Translate world relative to camera
-
-UI elements are rendered outside the scaled context to remain consistent.
-
-#### 5. Spatial Arrangement Improvements <br>
-Furniture layouts were reorganized to better resemble real spaces:
-
-- Bedroom includes bed, wardrobe, toys
-
-- Toy store includes aisles and checkout counter
-
-- Bathroom includes bathtub, sink, and toilet
-
-- Classroom includes desks and board
-
-This improves spatial readability and environmental storytelling.
+#### 3. Improved Interaction Logic for Bone Placement <br>
+The bone placement mechanic was modified so that the fox always runs toward the clicked location, even when placing bones. This created a more intuitive interaction flow.
 
 ### b. Post-Showcase: Planned Improvements
+Two improvements planned for future iterations include:
+#### 1. Smarter Fox Movement and Interaction Logic
+In a future iteration, the fox’s movement system will be expanded to support sequential path memory. Instead of immediately changing direction when the player clicks a new location, the fox will store each clicked position in a queue and travel to them one by one in order. This would create smoother and more predictable movement behavior.
 
-#### 1. Replace geometric placeholders with detailed furniture assets
-Future iterations will replace the current primitive geometric shapes with illustrated furniture assets sourced from royalty-free libraries or generated through GenAI tools, allowing each room to feel more immersive and visually cohesive.
+Additionally, when multiple bones are placed on the canvas, the fox will detect and prioritize the closest bone as its next target. This proximity-based selection would make the fox appear more responsive and intelligent, as it would naturally choose the nearest toy to interact with rather than relying on random movement or player direction.
 
-#### 2. Increase environmental detail and spatial variation
-Rooms could be enhanced with additional environmental features such as wooden floor textures, patterned walls, expanded window placement, varied lighting, and more complex layouts. Introducing layered decoration and spatial asymmetry would strengthen realism and atmosphere.
-
-#### 3. Introduce interactive memory characters
-Beyond interactive objects, future versions may include subtle representations of people from memory (e.g., classmates, teachers, family members). These figures could appear as silhouettes or softly animated forms that react to proximity, expanding the emotional and social dimension of the experience.
-
-#### 4. Expand the world into a life-stage progression map
-The environment could gradually evolve from childhood rooms into middle school, high school, and university spaces, forming a chronological spatial journey. This would transform the project into a navigable timeline of personal growth and memory development.
-
-#### 5. Add collectible memory fragments
-Collectible objects (e.g., small glowing fragments, photographs, symbolic items) could be placed throughout rooms to encourage exploration. Collecting these items could contribute to narrative progression or unlock deeper layers of memory.
-
-#### 6. Implement storyline progression and hidden memory unlocks
-Completing certain rooms or collecting key memory fragments could unlock hidden or previously inaccessible spaces. These hidden rooms may reveal deeper narrative elements, fragmented dialogue, or symbolic environments, reinforcing the idea that memory unfolds gradually through exploration.
-
-#### 7. Add ambient sound and atmospheric polish
-Room-specific ambient audio and subtle sound cues could enhance immersion and emotional tone, further strengthening the reflective quality of the experience.
-
+#### 2. Additional Visual Feedback Effects
+Small particle effects such as dust puffs while running or floating “Zzz” bubbles while sleeping could enhance visual feedback and improve the sense of character personality.
 ---
 
 ## Assets
 
-All room elements and furniture were constructed using primitive geometry in p5.js.
+The following non-original assets were used in this project. All sound effects were sourced from Pixabay and are free to use under the Pixabay Content License.
 
-Color selection was inspired by a warm pastel palette referenced online. 
-Final RGB values were manually selected and adjusted for consistency within the project.
+- Footstep Sound Effect – Sound Effect by freesound_community from Pixabay [1]
 
+- Fox Bark Sound Effect – Sound Effect by Ribhav Agrawal from Pixabay [2]
+
+- Ground Landing Sound Effect – Sound Effect by Universfield from Pixabay [3]
+
+- Snoring Sound Effect – Sound Effect by StrayCats Project from Pixabay [4]
+
+The fox animation sprite sheet used in the project was provided as part of the course resources.
+
+All user interface elements, including the pixel bone icon and bone sprite, were created programmatically using pixel drawing within the p5.js sketch.
+---
+## References
+
+In-Text Reference List (ACM Style)
+
+[1] freesound_community. 2021. Footstep Grass Sound Effect. Pixabay. https://pixabay.com
+
+[2] Ribhav Agrawal. 2022. Dog/Fox Bark Sound Effect. Pixabay. https://pixabay.com
+
+[3] Universfield. 2021. Snoring Sound Effect. Pixabay. https://pixabay.com
+
+[4] StrayCats Project. 2021. Ground Landing Sound Effect. Pixabay. https://pixabay.com
 ---
 
 ## GenAI
