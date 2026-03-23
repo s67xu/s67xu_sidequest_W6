@@ -19,6 +19,9 @@ let stepSound;
 let barkSound;
 let snoreSound;
 
+let showDebug = false;
+let soundOn = true;
+
 // ---------- BONE SYSTEM ----------
 let bones = [];
 let boneMode = false;
@@ -69,6 +72,8 @@ function preload() {
 
 function setup() {
   new Canvas(VIEWW, VIEWH, "pixelated");
+  //canvas.style.width = "100vw";
+  //dcanvas.style.height = "100vh";
 
   allSprites.pixelPerfect = true;
 
@@ -163,7 +168,7 @@ function draw() {
 
     player.ani = "sleep";
 
-    if (!snoreSound.isPlaying()) {
+    if (!snoreSound.isPlaying() && soundOn) {
       snoreSound.loop();
     }
   }
@@ -175,7 +180,7 @@ function draw() {
 
     barkTimer = millis();
 
-    barkSound.play();
+    if (soundOn) barkSound.play();
   }
 
   drawBones();
@@ -189,6 +194,7 @@ function draw() {
   } else {
     cursor(ARROW);
   }
+  drawDebugPanel();
 }
 
 // ---------- FOX MOVEMENT ----------
@@ -199,7 +205,7 @@ function moveFox(dx, dy, d, speed) {
 
     player.ani = "run";
 
-    if (frameCount % 25 === 0) {
+    if (frameCount % 25 === 0 && soundOn) {
       stepSound.play();
     }
 
@@ -250,6 +256,72 @@ function mousePressed() {
   state = "moving";
 }
 
+function keyPressed() {
+  if (key === "d" || key === "D") {
+    showDebug = !showDebug;
+  }
+
+  if (key === "s" || key === "S") {
+    soundOn = !soundOn;
+
+    if (!soundOn) {
+      stepSound.stop();
+      barkSound.stop();
+      snoreSound.stop();
+    }
+  }
+}
+
+function drawDebugPanel() {
+  if (!showDebug) return;
+
+  push();
+
+  // 💥 SCALE UP UI (THIS is the real fix)
+  scale(2); // try 2 or 3
+
+  let x = 5;
+  let y = 20;
+  let w = 70;
+  let h = 70;
+
+  fill(20, 40, 20, 200);
+  noStroke();
+  rect(x, y, w, h, 3);
+
+  fill(255);
+  textSize(6); // smaller because we scaled up
+  textFont("monospace");
+
+  let ty = y + 10;
+
+  text("DEBUG PANEL", x + 5, ty);
+  ty += 10;
+
+  text("State: " + state, x + 5, ty);
+  ty += 9;
+
+  text("Pos: " + floor(player.x) + ", " + floor(player.y), x + 5, ty);
+  ty += 9;
+
+  text(
+    "Vel: " + player.vel.x.toFixed(2) + ", " + player.vel.y.toFixed(2),
+    x + 5,
+    ty,
+  );
+  ty += 9;
+
+  text("Bones: " + bones.length, x + 5, ty);
+  ty += 9;
+
+  text("Bone Mode: " + (boneMode ? "ON" : "OFF"), x + 5, ty);
+  ty += 9;
+
+  text("Sound: " + (soundOn ? "ON" : "OFF"), x + 5, ty);
+
+  pop();
+}
+
 // ---------- TOOLBOX ----------
 function drawBoneBox() {
   stroke(120);
@@ -276,7 +348,7 @@ function drawBones() {
     if (d < 16) {
       bones.splice(i, 1);
 
-      barkSound.play();
+      if (soundOn) barkSound.play();
 
       previousState = state;
       state = "bark";

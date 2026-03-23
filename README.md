@@ -27,6 +27,7 @@ The fox acts as an autonomous companion that wanders around the screen when idle
 - Bone placement mechanic where players can drop bones for the fox to collect
 - Reactive sound effects including footsteps, barking, and purring
 - Pixel-art visuals and UI elements such as a bone toolbox
+- Pixel-art UI including bone toolbox and debug panel
 
 
 ---
@@ -36,12 +37,14 @@ The fox acts as an autonomous companion that wanders around the screen when idle
 
 #### Mouse Controls: <br>
 - Click anywhere on the canvas → The fox runs to that location.
-- Click on the fox → The fox lies down and falls asleep.
+- Click on the fox → Fox interact with you and purr.
 - Click the bone icon in the top-left corner → Toggle bone placement mode.
 - In bone mode, click anywhere on the canvas → Drop a bone for the fox.
 
 #### Keyboard Controls: <br>
 - Press Spacebar → The fox stops and barks.
+- Press D → Toggle debug panel (show/hide)
+- Press S → Toggle all sound on/off
 
 #### Gameplay Interaction Loop: <br>
 
@@ -52,7 +55,7 @@ Players can:
 - Drop bones for the fox to collect
 - Trigger bark animations and sound effects
 
-When the fox reaches a bone, it automatically barks and eats it, causing the bone to disappear.
+When the fox reaches a bone, it automatically barks and “eats” it, removing the bone
 
 ---
 ## Iteration Notes
@@ -124,6 +127,12 @@ During development, GenAI was used as a debugging assistant and implementation s
 - Integrating sound effects (footsteps, bark, snore) and resolving playback conflicts
 
 - Improving interaction logic for bone placement and fox collision detection
+
+- Improving UI systems including the debug panel and interaction feedback
+
+- Addressing rendering issues such as pixel scaling, smoothing, and UI readability
+
+GenAI outputs were frequently revised or adjusted to better match intended interaction design and gameplay behavior.
 
 GenAI also assisted in restructuring code for clarity, including modularizing bone rendering, toolbox UI logic, and sprite drawing functions.
 
